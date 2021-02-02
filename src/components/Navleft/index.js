@@ -33,10 +33,12 @@ export default class Navleft extends Component {
   render() {
         return (
             <div>
+              <NavLink to='/admin/home'>
                 <div className='logo'>
                   <img src='./assets/logo-ant.svg' alt=''/>
                   <h1>Imooc MS</h1>
                 </div>
+                </NavLink>
                 <Menu theme= 'dark'>
                    { this.state.menuTreeNode }
                 </Menu>
