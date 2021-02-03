@@ -11,15 +11,20 @@ import Notice from './pages/ui/notice'
 import Message from './pages/ui/message'
 import Tabs from './pages/ui/tabs'
 import Gallery from './pages/ui/gallery'
+import Carousel from './pages/ui/carousel'
 import Home from './pages/home'
+import FormLogin from './pages/form/login'
+import Register from './pages/form/register'
+import BasicTable from './pages/table/basicTable'
 
 export default class IRouter extends Component{
     render() {
         return (
             <Router>
                 <App>
+                    <Switch>
                     <Route path='/login' component={Login}/>
-                    <Route path='/admin' render={()=>
+                    <Route path='/' render={()=>
                       <Admin>
                         <Switch>
                         <Route path='/admin/home' component={Home}/>
@@ -30,10 +35,17 @@ export default class IRouter extends Component{
                         <Route path='/admin/ui/messages' component={Message}/>
                         <Route path='/admin/ui/tabs' component={Tabs}/>
                         <Route path='/admin/ui/gallery' component={Gallery}/>
+                        <Route path='/admin/ui/carousel' component={Carousel}/>
+
+                        <Route path='/admin/form/login' component={FormLogin}/>
+                        <Route path='/admin/form/reg' component={Register}/>
+
+                        <Route path='/admin/table/basic' component={BasicTable}/>
                         <Route component={Nomatch}/>
                         </Switch>
                       </Admin>
                     } />
+                    </Switch>
                 </App>
             </Router>
         )
