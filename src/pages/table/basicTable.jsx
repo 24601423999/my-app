@@ -71,12 +71,12 @@ export default class BasicTable extends Component {
     }).then(res=>{
       // console.log('res',res);
       if(res.code === 0 ){
-        res.resule.list.map((item,index)=>{
+        res.result.list.map((item,index)=>{
           item.key = index;
           return null;
         })
         this.setState({
-          dataSource2: res.resule.list,
+          dataSource2: res.result.list,
           selectedRowKeys:[],
           selectedRows:null, 
           pagination: Utils.pagination(res,(current)=>{

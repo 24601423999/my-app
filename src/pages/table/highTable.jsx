@@ -28,12 +28,12 @@ export default class HighTable extends Component {
     }).then(res=>{
       // console.log('res',res);
       if(res.code === 0 ){
-        res.resule.list.map((item,index)=>{
+        res.result.list.map((item,index)=>{
           item.key = index;
           return null;
         })
         this.setState({
-          dataSource: res.resule.list
+          dataSource: res.result.list
         })
       }
     })
