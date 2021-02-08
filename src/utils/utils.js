@@ -37,11 +37,23 @@ const a =  {
         return options;
     },
 
-    updateSelectedItem(selectedRowKeys,selectedItem){
-        this.setState({
-            selectedRowKeys,
-            selectedItem
-        })
+    updateSelectedItem(selectedRowKeys,selectedItem,selectedIds){
+        if(selectedIds){
+            this.setState({
+                selectedRowKeys,
+                selectedItem,
+                selectedIds
+            })
+            // console.log("selectedRowKeys",this.state.selectedRowKeys)
+            // console.log("selectedItem",this.state.selectedItem)
+            // console.log("selectedIds",this.state.selectedIds)
+        }else{
+            this.setState({
+                selectedRowKeys,
+                selectedItem
+            })
+        }
+        
     }
 }
 

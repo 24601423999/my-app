@@ -132,19 +132,10 @@ export default class Order extends Component {
     
   }
 
-  // 单选按钮事件
-  onRowClick = (record,index) => {
-    // console.log('record:re',record);
-    let selectKey = [index];
-    this.setState({
-      selectedRowKeys:selectKey,
-      selectdItem: record
-    })
-  }
 
   // 订单详情
   openOrderDetail = () => {
-    let item = this.state.selectdItem; 
+    let item = this.state.selectedItem; 
     console.log('selectdItem',this.state.selectdItem);
     // console.log('item')
 
@@ -159,9 +150,11 @@ export default class Order extends Component {
     window.open(`/#/common/order/detail/${item.id}`,'_black');
   }
 
+
+
   render() { 
-    let { list, pagination, orderConfirmVisble, orderInfo, selectedRowKeys } = this.state;
-    let { handleConfirm, handleFindshOrder, onRowClick, openOrderDetail } = this
+    let { list, pagination, orderConfirmVisble, selectedRowKeys, selectedIds, selectedItem, orderInfo } = this.state;
+    let { handleConfirm, handleFindshOrder, openOrderDetail } = this
     const columns = [
       {
         title:'订单编号',
@@ -219,11 +212,7 @@ export default class Order extends Component {
       labelCol: {span:5},
       wrapperCol: {span:19}
     }
-
-    let rowSelection = {
-      type:'radio',
-      selectedRowKeys
-    }
+ 
     return (
       <div>
         <Card>
@@ -236,25 +225,15 @@ export default class Order extends Component {
         </Card>
         <div className='content-wrap'>
           <ETable
+            updateSelectedItem={Utils.updateSelectedItem.bind(this)}
             columns={columns}
             dataSource={list}
-            // rowSelection={false}
+            selectedRowKeys={selectedRowKeys}
             pagination={pagination}
+            selectedIds={selectedIds}
+            selectedItem={selectedItem}
+            rowSelection='checkbox'
           />
-          {/* <Table 
-            bordered
-            columns={columns}
-            dataSource={list}
-            rowSelection={rowSelection}
-            pagination={pagination}
-            onRow={(record,index)=>{
-              return {
-                onClick: ()=>{
-                  onRowClick(record,index)
-                }
-              }
-            }}
-          /> */}
         </div>
         <Modal 
           title='结束订单'
