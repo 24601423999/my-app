@@ -26,7 +26,38 @@ class FilterForm extends Component {
         let initialValue = item.initialValue || '';
         let placeholder = item.placeholder;
         let width = item.width;
-        if(item.type === '时间查询'){
+        if(item.type === 'INPUT'){
+          const INPUT = <FormItem label={label} key={field}>
+            {
+              getFieldDecorator(field,{
+                initialValue:initialValue
+              })(
+                <Input
+                  type='text'
+                  placeholder={placeholder}
+                  style={{width: width}}
+                />
+              )
+            }
+          </FormItem>
+          formItemList.push(INPUT);
+        }else if (item.type === 'SELECT') {
+          const SELECT = <FormItem label={label} key={field}>
+              {
+                  getFieldDecorator(field, {
+                      initialValue: initialValue
+                  })(
+                      <Select
+                          style={{ width: width }}
+                          placeholder={placeholder}
+                      >
+                          {Utils.getOptionList(item.list)}
+                      </Select>
+                  )
+              }
+          </FormItem>;
+          formItemList.push(SELECT)
+      } else if(item.type === '时间查询'){
           const begin_time = <FormItem label="订单时间" key='begin_time'>
             {
               getFieldDecorator("begin_time",{
@@ -53,23 +84,7 @@ class FilterForm extends Component {
             }
           </FormItem>
           formItemList.push(end_time)
-        }else if (item.type === 'SELECT') {
-          const SELECT = <FormItem label={label} key={field}>
-              {
-                  getFieldDecorator(field, {
-                      initialValue: initialValue
-                  })(
-                      <Select
-                          style={{ width: width }}
-                          placeholder={placeholder}
-                      >
-                          {Utils.getOptionList(item.list)}
-                      </Select>
-                  )
-              }
-          </FormItem>;
-          formItemList.push(SELECT)
-      } else if(item.type === 'CHECKBOX'){
+        }else if(item.type === 'CHECKBOX'){
           const CHECK = <FormItem label={label} key={field}>
             {
               getFieldDecorator(field,{
@@ -83,22 +98,20 @@ class FilterForm extends Component {
             }
           </FormItem>
           formItemList.push(CHECK);
-        }else if(item.type === 'INPUT'){
-          const INPUT = <FormItem label={label} key={field}>
+        }else if(item.type='DATE'){
+          const datepicker = <FormItem label={label} key={field}>
             {
-              getFieldDecorator(field,{
-                initialValue:initialValue
-              })(
-                <Input
-                  type='text'
+              getFieldDecorator(field)(
+                <DatePicker
+                  showTime = {true}
                   placeholder={placeholder}
+                  format="YYYY-MM-DD HH:mm:ss"
                 />
               )
             }
           </FormItem>
-          formItemList.push(INPUT);
+          formItemList.push(datepicker);
         }
-
       })
     }
     return formItemList

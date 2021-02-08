@@ -20,7 +20,7 @@ import City from './pages/city/index'
 import Order from './pages/order/index'
 import Common from './common'
 import OrderDetail from './pages/order/detail'
-
+import User from './pages/user/index'
 
 
 import Nomatch from './pages/ui/Nomatch'
@@ -54,6 +54,8 @@ export default class IRouter extends Component{
                             <Route path='/admin/city' component={City} />
                             {/* order */}
                             <Route path='/admin/order' component={Order} />
+                            {/* user */}
+                            <Route path='/admin/user' component={User} />
                             <Route component={Nomatch}/>
                             </Switch>
                         </Admin>
