@@ -84,6 +84,22 @@ class FilterForm extends Component {
             }
           </FormItem>
           formItemList.push(end_time)
+        }else if(item.type === '城市'){
+          const city = <FormItem label='城市' key='city'>
+            {
+              getFieldDecorator("city",{
+                initialValue:'0'
+              })(
+                <Select
+                  style={{width:width}}
+                  placeholder={placeholder}
+                >
+                  {Utils.getOptionList([{id:'0',name:"全部"},{id:"1",name:"北京市"},{id:"2",name:"天津市"},{id:"3",name:"邯郸市"}])}
+                </Select>
+              )
+            }
+          </FormItem>
+          formItemList.push(city);
         }else if(item.type === 'CHECKBOX'){
           const CHECK = <FormItem label={label} key={field}>
             {
@@ -98,7 +114,7 @@ class FilterForm extends Component {
             }
           </FormItem>
           formItemList.push(CHECK);
-        }else if(item.type='DATE'){
+        }else if(item.type === 'DATE'){
           const datepicker = <FormItem label={label} key={field}>
             {
               getFieldDecorator(field)(
@@ -117,11 +133,12 @@ class FilterForm extends Component {
     return formItemList
   }
   render() {
+    let { handleFilterSubmit } = this;
     return (
       <Form layout='inline'>
         {this.initFormList()}
         <FormItem>
-          <Button type='primary' style={{margin:'0 20px'}} onClick={this.handleFilterSubmit}>查询</Button>
+          <Button type='primary' style={{margin:'0 20px'}} onClick={handleFilterSubmit}>查询</Button>
           <Button onClick={this.reset}>重置</Button>
         </FormItem>
       </Form>

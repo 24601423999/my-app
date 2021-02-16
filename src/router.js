@@ -21,6 +21,7 @@ import Order from './pages/order/index'
 import Common from './common'
 import OrderDetail from './pages/order/detail'
 import User from './pages/user/index'
+import bikeMap from './pages/map/bikeMap'
 
 
 import Nomatch from './pages/ui/Nomatch'
@@ -56,6 +57,8 @@ export default class IRouter extends Component{
                             <Route path='/admin/order' component={Order} />
                             {/* user */}
                             <Route path='/admin/user' component={User} />
+                            {/* map */}
+                            <Route path='/admin/bikeMap' component={bikeMap} />
                             <Route component={Nomatch}/>
                             </Switch>
                         </Admin>
