@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Router from './router'
-
+import { Provider } from 'react-redux'
+import configursStore from './redux/store/configureStore'
 // import App from './pages/router-demo/route1/Home'
 // import App from './pages/router-demo/route3/router'
 import reportWebVitals from './reportWebVitals';
 
+
+const store = configursStore();
 ReactDOM.render(
-    <Router />,
+  <Provider store={store}>
+    <Router />
+  </Provider>,
   document.getElementById('root')
 );
 

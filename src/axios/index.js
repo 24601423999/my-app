@@ -4,9 +4,10 @@ import { Modal } from 'antd'
 import Utils from './../utils/utils'
 
 export default class Axios{
-  static requestList(_this,url,params){
+  static requestList(_this,url,params,isMock){
     var data = {
-      params: params
+      params: params,
+      isMock
     }
     this.ajax({
       url,

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Row,Col } from 'antd'
+import { connect } from 'react-redux'
 import './index.less'
 import Util from './../../utils/utils'
 
-export default class Header extends Component {
+class Header extends Component {
     componentWillMount(){
       this.setState({
         userName:'李腾--LiTeng'
@@ -37,7 +38,7 @@ export default class Header extends Component {
                   menuType?'':
                   <Row className='breadcrumb'>
                     <Col span={4} className='breadcrumb-title'>
-                      首-页
+                      {this.props.menuName}
                     </Col>
                     <Col span={20} className='weather'>
                       <span className='date'>{ this.state.sysTime }</span>
@@ -50,3 +51,9 @@ export default class Header extends Component {
         )
     }
 }
+const mapStateToProps = state => {
+  return {
+    menuName: state.menuName
+  }
+}
+export default connect(mapStateToProps)(Header)
